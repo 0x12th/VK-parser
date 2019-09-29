@@ -23,8 +23,8 @@ class AuthWindow(QWidget, Ui_Auth_form):
     def __init__(self):
         QWidget.__init__(self)
         self.setupUi(self)
-        self.login_line.setText(str('+79203061328'))
-        self.password_line.setText(str('MAKAR120497ybrbnf'))
+        self.login_line.setText(str(''))
+        self.password_line.setText(str(''))
         self.pushButton.clicked.connect(self.auth_btn)
 
     def auth_btn(self):

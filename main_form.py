@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main_forn.ui'
+# Form implementation generated from reading ui file 'main_form.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -507,7 +509,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Система мониторинга целевой аудитории"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "VK парсер biryukov12"))
         self.searchUsersButton.setText(_translate("MainWindow", "Получить список пользователей"))
         self.searchCommunityButton.setText(_translate("MainWindow", "Искать"))
         self.label_7.setText(_translate("MainWindow", "Всего сообществ:"))
@@ -558,4 +560,3 @@ class Ui_MainWindow(object):
         self.menu.setTitle(_translate("MainWindow", "Справка"))
         self.action_2.setText(_translate("MainWindow", "О программе"))
         self.action_3.setText(_translate("MainWindow", "Об авторе"))
-

@@ -32,7 +32,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Система мониторинга целевой аудитории</string>
+   <string>VK парсер biryukov12</string>
   </property>
   <property name="styleSheet">
    <string notr="true"> QPushButton
