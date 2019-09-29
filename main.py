@@ -4,8 +4,7 @@ from PyQt5 import QtWidgets, QtCore
 from main_form import Ui_MainWindow
 from auth_form import Ui_Auth_form
 from info_form import Ui_info_form
-from PyQt5.QtWidgets import QTableWidgetItem, QWidget, QPushButton, QApplication, QAction, QMenu, QFileDialog,\
-    QMessageBox
+from PyQt5.QtWidgets import QTableWidgetItem, QWidget, QFileDialog, QMessageBox
 import sys
 import requests
 import collections
@@ -19,6 +18,7 @@ token = '5959fa775959fa775959fa77e9593354da559595959fa7705ba5e935d90d93fc460081b
 v = 5.95
 
 
+# Окно авторизации
 class AuthWindow(QWidget, Ui_Auth_form):
     def __init__(self):
         QWidget.__init__(self)
@@ -45,6 +45,7 @@ class AuthWindow(QWidget, Ui_Auth_form):
             self.window.show()
 
 
+# Окно программы
 class InfoWindow(QWidget):
     def __init__(self):
         super(InfoWindow, self).__init__()
@@ -52,6 +53,7 @@ class InfoWindow(QWidget):
         self.ui.setupUi(self)
 
 
+# Основной код
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, user_token):
         super(MainWindow, self).__init__()
@@ -77,7 +79,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.window = InfoWindow()
         self.window.show()
 
-    # получение списка с группами
+    # Получение списка с группами
     def search_groups(self):
         groups_all_fields = []
         words_list = self.ui.searchCommunityEdit.toPlainText().splitlines()
@@ -138,7 +140,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     msg.exec_()
                 self.ui.label_7.setText('Всего сообществ: ' + str(len(screen_name_list)))
 
-    # получение списка постов
+    # Получение списка постов
     def take_posts(self):
         all_posts = []
         domain_names = []
@@ -170,7 +172,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 all_posts.extend(data)
         return all_posts
 
-    # получение списка с ID паблика и поста
+    # Получение списка с ID паблика и поста
     def export_id(self, all_posts):
 
         posts = []
@@ -178,7 +180,7 @@ class MainWindow(QtWidgets.QMainWindow):
             posts.append((post['owner_id'], post['id']))
         return posts
 
-    # получение списка ID пользователей лайк/репост
+    # Получение списка ID пользователей лайк/репост
     def likes(self, owner_id, item_id):
 
         type = 'post'
@@ -197,7 +199,7 @@ class MainWindow(QtWidgets.QMainWindow):
         likes_id.extend(data)
         return likes_id
 
-    # получение ID комментариев
+    # Получение ID комментариев
     def comments(self, owner_id, post_id):
         comments_list = []
         count = 100
@@ -218,7 +220,7 @@ class MainWindow(QtWidgets.QMainWindow):
             comments_list.extend(data)
         return comments_list
 
-    # получение активной аудитории
+    # Получение активной аудитории
     def activity(self):
         activity_likes = int(self.ui.activityLikesEdit.text())
         activity_comments = int(self.ui.activityCommentsEdit.text())
@@ -246,7 +248,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 msg.setText('Вы не указали критерии активности!')
                 msg.exec_()
 
-            # если выбраны лайки/репосты
+            # Если выбраны лайки/репосты
             if check == 1:
                 likes_id = []
                 l = []
@@ -261,7 +263,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     l.append(list_item)
                 likes_comments_list = l
 
-            # если выбраны комментарии
+            # Если выбраны комментарии
             elif check == 2:
                 comments_id = []
                 comments_id_ = []
@@ -286,7 +288,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     c.append(list_item)
                 likes_comments_list = c
 
-            # если выбраны лайки/репосты и комментарии
+            # Если выбраны лайки/репосты и комментарии
             elif check == 3:
                 likes_id = []
                 l = []
@@ -325,7 +327,7 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 pass
 
-            # получение данных о пользователях
+            # Получение данных о пользователях
             fields = 'id, sex, education, universities, city, country, bdate'
             lang = 'ru'
             users_allinfo_list = []
@@ -357,7 +359,8 @@ class MainWindow(QtWidgets.QMainWindow):
             for x in users_allinfo_list:
                 test.append(x)
             print(len(test))
-            # создание заголовков колонок
+
+            # Создание заголовков колонок
             self.ui.tableWidget.setRowCount(len(users_allinfo_list))
             self.ui.tableWidget.setHorizontalHeaderLabels(('Имя', 'Фамилия', 'Пол', 'Возраст', 'Страна', 'Город',
                                                            'Место учебы'))
@@ -418,7 +421,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.cityComboBox.addItems(city_list)
             self.ui.educationComboBox.addItems(VUZ_list)
 
-            # вывод данных в таблицу
+            # Вывод данных в таблицу
             row = 0
             for tup in dta:
                 col = 0
@@ -440,16 +443,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
             self.likes_commenst_list = likes_comments_list
 
+    # Сохранение в файл ID полученной аудитории
     def save_IDs(self):
         filename = QFileDialog.getSaveFileName(self, '', os.getcwd(), "Text (*.txt)")[0]
         with open(filename, "w", encoding='utf8') as file:
             for x in self.likes_commenst_list:
                 file.write('%s\n' % x)
 
+    # Сохранение в буфер ID полученной аудитории
     def buffer(self):
         string = '\n'.join(str(x) for x in self.likes_commenst_list)
         pyperclip.copy(string)
 
+    # Загрузка ID из файла
     def load_IDs(self):
         users_allinfo_list = []
         likes_comments_list = []
@@ -533,6 +539,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.likes_commenst_list = likes_comments_list
 
+    # Применение фильтра
     def filter(self):
             dta = []
             filtered_users = []
