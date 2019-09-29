@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Auth_form</class>
+ <widget class="QWidget" name="Auth_form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>260</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>460</width>
+    <height>260</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>460</width>
+    <height>260</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Авторизация</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton
+{
+border-radius: 2px;
+background: #c87243;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:hover
+{
+border-radius: 2px;
+background: #b35d2e;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:pressed
+{
+border-radius: 2px;
+background: #bc683a;
+color: #fafbfc;
+font: bold;
+}
+
+*
+{
+background: #203347;
+color: #fafbfc;
+selection-color: #182635;
+selection-background-color: #fafbfc;
+}
+
+QLabel
+{
+color: #fafbfc;
+}
+
+QComboBox {
+border: 1px solid #7487a3;
+border-radius: 2px;
+padding: 1px 18px 1px 3px;
+min-width: 2em;
+}
+
+QComboBox::drop-down 
+{
+subcontrol-origin: padding;
+subcontrol-position: top right;
+width: 15px;
+border-left-width: 1px;
+border-left-color: #7487a3;
+border-left-style: solid; /* только одна линия */
+border-top-right-radius: 2px; /* тот же радиус закругления что и у QComboBox */
+border-bottom-right-radius: 2px;
+}
+
+QComboBox::down-arrow {
+image: url(D:/YandexDisk/4 курс/Диплом/Main/icons/DropDownArrow.png);
+width: 10px;
+height: 10px;
+}
+
+QComboBox:on
+{
+padding-top: 1px;
+}
+
+QComboBox::down-arrow:on { /* сдвиг стрелки когда выпадающий список раскрывается */
+top: 1px;
+}
+
+QComboBox:editable {
+background-color: #182635;
+}
+
+QComboBox QAbstractItemView
+{
+border: 1px solid #7487a3;
+selection-background-color: #fafbfc;
+background-color: #182635;
+min-width: 500px;
+}
+
+QGroupBox
+{
+color: #d7dde3;
+border: 1px solid #d7dde3;
+border-radius: 2px;
+margin-top: 2ex; /* оставляем пространство вверху для заголовка */
+}
+
+QGroupBox::title
+{
+subcontrol-origin: margin;
+subcontrol-position: top center; /* помещаем вверху по центру */
+padding: 0 3px;
+}
+
+QListWidget
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #fafbfc;
+alternate-background-color: #7487a3;
+color: #182635;
+}
+
+QTextEdit
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #182635;
+}
+
+QTableWidget
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #fafbfc;
+}
+
+QTableWidget:item
+{
+color: #182635;
+}
+
+QHeaderView
+{
+color: #182635;
+}
+
+QLineEdit
+{
+border: none;
+color: #fafbfc;
+border-bottom: 1px solid #7487a3;
+background: transparent;
+}
+
+QMenu {
+margin: 2px; /* немного пространства вокруг меню */
+background-color: #121e36;
+ }
+
+QMenuBar:item:selected
+{
+color: #fafbfc;
+background-color: #121e36;
+}
+
+QMenu::item {
+padding: 2px 25px 2px 20px;
+border: 1px solid transparent; /* резерв пространства для границы выделения */
+background-color: #121e36;
+color: #fafbfc;
+}
+
+QMenu::item:selected {
+border-color: 1px solid #fafbfc;
+}</string>
+  </property>
+  <widget class="QLineEdit" name="login_line">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>49</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Логин</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="password_line">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>90</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Пароль</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>150</y>
+     <width>231</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Войти</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>info_form</class>
+ <widget class="QWidget" name="info_form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>380</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Справка</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"> QPushButton
+{
+border-radius: 2px;
+background: #c87243;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:hover
+{
+border-radius: 2px;
+background: #b35d2e;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:pressed
+{
+border-radius: 2px;
+background: #bc683a;
+color: #fafbfc;
+font: bold;
+}
+
+*
+{
+background: #182635;
+color: #fafbfc;
+selection-color: #182635;
+selection-background-color: #fafbfc;
+}
+
+QLabel
+{
+color: #fafbfc;
+}
+
+QComboBox {
+padding: 1px 18px 1px 3px;
+min-width: 2em;
+}
+
+QComboBox::drop-down 
+{
+subcontrol-origin: padding;
+subcontrol-position: top right;
+width: 15px;
+}
+
+QComboBox::down-arrow {
+image: url(D:/YandexDisk/4 курс/Диплом/Main/icons/DropDownArrow.png);
+width: 10px;
+height: 10px;
+}
+
+QComboBox:on
+{
+padding-top: 1px;
+}
+
+QComboBox::down-arrow:on { /* сдвиг стрелки когда выпадающий список раскрывается */
+top: 1px;
+}
+
+QComboBox:editable {
+background-color: #182635;
+}
+
+QComboBox QAbstractItemView
+{
+selection-background-color: #fafbfc;
+background-color: #182635;
+}
+
+QComboBox QAbstractItemView
+{
+min-width: 420px;
+}
+
+QGroupBox
+{
+color: #d7dde3;
+margin-top: 2ex; /* оставляем пространство вверху для заголовка */
+}
+
+QGroupBox::title
+{
+subcontrol-origin: margin;
+subcontrol-position: top center; /* помещаем вверху по центру */
+padding: 0 3px;
+}
+
+QListWidget
+{
+background-color: #fafbfc;
+alternate-background-color: #7487a3;
+color: #182635;
+}
+
+QTextEdit
+{
+border: 0 px;
+background-color: #182635;
+}
+
+QTableWidget
+{
+background-color: #fafbfc;
+}
+
+QTableWidget:item
+{
+color: #182635;
+}
+
+QHeaderView
+{
+color: #182635;
+}
+
+QLineEdit
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #182635;
+selection-background-color:#fafbfc;
+padding: 0 8px;
+}
+
+QMenu {
+margin: 2px; /* немного пространства вокруг меню */
+background-color: #121e36;
+ }
+
+QMenuBar:item:selected
+{
+color: #fafbfc;
+background-color: #121e36;
+}
+
+QMenu::item {
+padding: 2px 25px 2px 20px;
+border: 1px solid transparent; /* резерв пространства для границы выделения */
+background-color: #121e36;
+color: #fafbfc;
+}
+
+QMenu::item:selected {
+border-color: 1px solid #fafbfc;
+}</string>
+  </property>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>581</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Сообщества:&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Для поиска пользователей необходимо указать сообщества (ссылка / ID / заголовок). Также возможен поиск сообществ – необходимо указать фразы для поиска. При поиске сообществ доступен выбор сортировки и количества сообществ на каждую фразу.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Критерии активности:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;По умолчанию указаны рекомендуемые критерии для поиска целевой аудитории. Но, при необходимости, можно уменьшить или увеличить количество анализируемых публикаций в каждом сообществе. При анализе сообществ можно учитывать лайки / комментарии или лайки и комментарии. Доступно изменение глубины активности пользователей (количество повторяющихся публикаций по лайкам / комментариям на каждого пользователя).&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Фильтр:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;После успешного поиска целевой аудитории пользователь может воспользоваться фильтром. Фильтр следует применять, когда пользователь уверен в выбранных критериях фильтрации, т.к. аудитория со скрытыми полями указанных критериев отсеивается.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Сохранение и загрузка полученной аудитории:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Доступен может скопировать полученную аудиторию в буфер обмена или сохранить в отдельном файле. При необходимости, пользователь может загрузить полученную ранее целевую аудиторию для применения фильтра.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

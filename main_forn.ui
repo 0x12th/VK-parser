@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1270</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1270</width>
+    <height>685</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1270</width>
+    <height>685</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Система мониторинга целевой аудитории</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"> QPushButton
+{
+border-radius: 2px;
+background: #c87243;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:hover
+{
+border-radius: 2px;
+background: #b35d2e;
+color: #fafbfc;
+font: bold;
+}
+
+QPushButton:pressed
+{
+border-radius: 2px;
+background: #bc683a;
+color: #fafbfc;
+font: bold;
+}
+
+*
+{
+background: #203347;
+color: #fafbfc;
+selection-color: #182635;
+selection-background-color: #fafbfc;
+}
+
+QLabel
+{
+color: #fafbfc;
+}
+
+QComboBox {
+border: 1px solid #7487a3;
+border-radius: 2px;
+padding: 1px 18px 1px 3px;
+min-width: 2em;
+}
+
+QComboBox::drop-down 
+{
+subcontrol-origin: padding;
+subcontrol-position: top right;
+width: 15px;
+border-left-width: 1px;
+border-left-color: #7487a3;
+border-left-style: solid; /* только одна линия */
+border-top-right-radius: 2px; /* тот же радиус закругления что и у QComboBox */
+border-bottom-right-radius: 2px;
+}
+
+QComboBox::down-arrow {
+image: url(D:/YandexDisk/4 курс/Диплом/Main/icons/DropDownArrow.png);
+width: 10px;
+height: 10px;
+}
+
+QComboBox:on
+{
+padding-top: 1px;
+}
+
+QComboBox::down-arrow:on { /* сдвиг стрелки когда выпадающий список раскрывается */
+top: 1px;
+}
+
+QComboBox:editable {
+background-color: #182635;
+}
+
+QComboBox QAbstractItemView
+{
+border: 1px solid #7487a3;
+selection-background-color: #fafbfc;
+background-color: #182635;
+}
+
+QComboBox QAbstractItemView
+{
+min-width: 420px;
+}
+
+QGroupBox
+{
+color: #d7dde3;
+border: 1px solid #d7dde3;
+border-radius: 2px;
+margin-top: 2ex; /* оставляем пространство вверху для заголовка */
+}
+
+QGroupBox::title
+{
+subcontrol-origin: margin;
+subcontrol-position: top center; /* помещаем вверху по центру */
+padding: 0 3px;
+}
+
+QListWidget
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #fafbfc;
+alternate-background-color: #7487a3;
+color: #182635;
+}
+
+QTextEdit
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #182635;
+}
+
+QTableWidget
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #fafbfc;
+}
+
+QTableWidget:item
+{
+color: #182635;
+}
+
+QHeaderView
+{
+color: #182635;
+}
+
+QLineEdit
+{
+border: 1px solid #7487a3;
+border-radius: 2px;
+background-color: #182635;
+selection-background-color:#fafbfc;
+padding: 0 8px;
+}
+
+QMenu {
+margin: 2px; /* немного пространства вокруг меню */
+background-color: #121e36;
+ }
+
+QMenuBar:item:selected
+{
+color: #fafbfc;
+background-color: #121e36;
+}
+
+QMenu::item {
+padding: 2px 25px 2px 20px;
+border: 1px solid transparent; /* резерв пространства для границы выделения */
+background-color: #121e36;
+color: #fafbfc;
+}
+
+QMenu::item:selected {
+border-color: 1px solid #fafbfc;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="searchUsersButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>590</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Получить список пользователей</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchCommunityButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>190</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Искать</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>440</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Всего сообществ:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>500</y>
+      <width>201</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>8</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Количество публикаций для анализа:</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="likesCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>530</y>
+      <width>201</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>По отметкам «мне нравится»</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="commentsCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>560</y>
+      <width>201</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>По комментариям</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="publicationsCountEdit">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>500</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="searchCommunityEdit">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>251</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>271</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+     </font>
+    </property>
+    <property name="title">
+     <string>Поиск сообществ</string>
+    </property>
+    <widget class="QComboBox" name="typeSortComboBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>251</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>40</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <item>
+      <property name="text">
+       <string>Cортировать по скорости роста</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Дневная посещаемость к количеству пользователей</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Количество лайков к количеству пользователей</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Отношение количества комментариев к количеству пользователей</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Отношение количества записей в обсуждениях к количеству пользователей</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Сообществ на каждый запрос:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="communityCountEdit">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>150</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>480</y>
+      <width>271</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+     </font>
+    </property>
+    <property name="title">
+     <string>Критерии активности аудитории</string>
+    </property>
+    <widget class="QLineEdit" name="activityCommentsEdit">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>80</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>741</width>
+      <height>631</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+     </font>
+    </property>
+    <property name="title">
+     <string>Полученная аудитория</string>
+    </property>
+    <widget class="QPushButton" name="saveIDsButton">
+     <property name="geometry">
+      <rect>
+       <x>589</x>
+       <y>580</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Сохранить ID</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>721</width>
+       <height>551</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Имя</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Фамилия</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Пол</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Возраст</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Страна</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Город</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Место учебы</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="loadIDsButton">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>580</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Загрузить ID</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="copyBufferButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>580</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/buffer.png</normaloff>icons/buffer.png</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>250</y>
+      <width>271</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+     </font>
+    </property>
+    <property name="title">
+     <string>Список сообществ</string>
+    </property>
+    <widget class="QTextEdit" name="communityListEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>251</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>1049</x>
+      <y>9</y>
+      <width>201</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Фильтр</string>
+    </property>
+    <widget class="QLineEdit" name="ageToEdit">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>40</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="sexComboBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>91</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QAbstractItemView
+{
+min-width: 91px;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не менять</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Мужской</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Женский</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Пол:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>16</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>От:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ageFromEdit">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cityComboBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>181</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QAbstractItemView
+{
+min-width: 181px;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не менять</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>40</y>
+       <width>16</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>До:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>170</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Город:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Возраст:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="educationComboBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>240</y>
+       <width>181</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QAbstractItemView
+{
+min-width: 181px;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не менять</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Место учебы:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="countryComboBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>140</y>
+       <width>181</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QAbstractItemView
+{
+min-width: 181px;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не менять</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Страна:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="filterButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>280</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Применить фильтр</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="activityLikesEdit">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>530</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+   </widget>
+   <zorder>groupBox_4</zorder>
+   <zorder>groupBox_3</zorder>
+   <zorder>groupBox_2</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>searchUsersButton</zorder>
+   <zorder>searchCommunityButton</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
+   <zorder>likesCheckBox</zorder>
+   <zorder>commentsCheckBox</zorder>
+   <zorder>publicationsCountEdit</zorder>
+   <zorder>searchCommunityEdit</zorder>
+   <zorder>groupBox_5</zorder>
+   <zorder>activityLikesEdit</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1270</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="action_2"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="action_2">
+   <property name="text">
+    <string>О программе</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto Medium</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Об авторе</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto Medium</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
