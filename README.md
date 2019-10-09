@@ -11,7 +11,7 @@ A simple parser informs users from the community by applying a filter to the rec
 
 При запуске программы пользователю необходимо авторизоваться, введя логин и пароль. После успешной авторизации программа получает access_token, необходимый для работы многих алгоритмов. Access_token передается в модуль основной программы.
 
-![Screenshot](https://github.com/biryukov12/VK-parser/raw/master/auth_form.png)
+![Screenshot](https://github.com/biryukov12/VK-parser/raw/master/screenshots/auth_form.png)
 
 ---
 
@@ -25,4 +25,4 @@ A simple parser informs users from the community by applying a filter to the rec
 
 - Сохранение и загрузка полученной аудитории. Доступен может скопировать полученную аудиторию в буфер обмена или сохранить в отдельном файле. При необходимости, пользователь может загрузить полученную ранее целевую аудиторию для применения фильтра.
 
-![Screenshot](https://github.com/biryukov12/VK-parser/raw/master/main_form.png)
+![Screenshot](https://github.com/biryukov12/VK-parser/raw/master/screenshots/main_form.png)
