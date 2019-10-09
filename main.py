@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtWidgets, QtCore
-from main_form import Ui_MainWindow
-from auth_form import Ui_Auth_form
-from info_form import Ui_info_form
+from forms.main_form import Ui_MainWindow
+from forms.auth_form import Ui_Auth_form
+from forms.info_form import Ui_info_form
 from PyQt5.QtWidgets import QTableWidgetItem, QWidget, QFileDialog, QMessageBox
 import sys
 import requests
