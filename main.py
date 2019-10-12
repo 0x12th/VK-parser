@@ -13,8 +13,6 @@ import datetime
 from vkauth import VKAuth
 import pyperclip
 
-user_test_token = '2713b299637f7014f8723cd547ef5237643ea3c98347180c8f71c54f7b5e4a4162b71c1d1c6febc6cdfd3'
-token = '5959fa775959fa775959fa77e9593354da559595959fa7705ba5e935d90d93fc460081b'
 v = 5.95
 
 
