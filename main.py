@@ -141,10 +141,8 @@ class MainWindow(QtWidgets.QMainWindow):
     # Получение списка постов
     def take_posts(self):
         all_posts = []
-        domain_names = []
         groups = self.ui.communityListEdit.toPlainText().splitlines()
-        for group in groups:
-            domain_names.append(group.replace('https://vk.com/', '').replace(' ', ''))
+        domain_names = [group.replace('https://vk.com/', '').replace(' ', '') for group in groups]
         amount = int(self.ui.publicationsCountEdit.text())
         offset = 1
         if amount > 100:
@@ -172,21 +170,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Получение списка с ID паблика и поста
     def export_id(self, all_posts):
-
-        posts = []
-        for post in all_posts:
-            posts.append((post['owner_id'], post['id']))
+        posts = [(post['owner_id'], post['id']) for post in all_posts]
         return posts
 
     # Получение списка ID пользователей лайк/репост
     def likes(self, owner_id, item_id):
-
         type = 'post'
         likes_id = []
-
         response = requests.get('https://api.vk.com/method/likes.getList',
                                 params={
-                                    'access_token': token,
+                                    'access_token': self.user_token,
                                     'v': v,
                                     'type': type,
                                     'owner_id': owner_id,
@@ -205,7 +198,7 @@ class MainWindow(QtWidgets.QMainWindow):
         while offset < 1000:
             response = requests.get('https://api.vk.com/method/wall.getComments',
                                     params={
-                                        'access_token': token,
+                                        'access_token': self.user_token,
                                         'v': v,
                                         'owner_id': owner_id,
                                         'post_id': post_id,
@@ -248,80 +241,45 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # Если выбраны лайки/репосты
             if check == 1:
-                likes_id = []
-                l = []
-                for x, y in self.export_id(self.take_posts()):
-                    likes_id.append(self.likes(x, y))
-                all_likes = []
-                for x in likes_id:
-                    for y in x:
-                        all_likes.append(y)
-                for list_item in ([item for item, count in collections.Counter(all_likes).items()
-                                   if count > activity_likes]):
-                    l.append(list_item)
+                likes_id = [self.likes(x, y) for x, y in self.export_id(self.take_posts())]
+                all_likes = [y for x in likes_id for y in x]
+                l = [list_item for list_item in ([item for item, count in collections.Counter(all_likes).items()
+                                                  if count > activity_likes])]
                 likes_comments_list = l
 
             # Если выбраны комментарии
             elif check == 2:
                 comments_id = []
-                comments_id_ = []
-                sorted_list = []
-                c = []
-                for a, b in self.export_id(self.take_posts()):
-                    comments_id_.append((self.comments(a, b)))
+                comments_id_ = [(self.comments(a, b)) for a, b in self.export_id(self.take_posts())]
                 for x in comments_id_:
                     for comment in x:
                         try:
                             comments_id.append(comment['from_id'])
                         except:
                             pass
-
-                for sort in comments_id:
-                    if sort > 0:
-                        sorted_list.append(sort)
-                    else:
-                        pass
-                for list_item in ([item for item, count in collections.Counter(sorted_list).items()
-                                   if count > activity_comments]):
-                    c.append(list_item)
+                sorted_list = [sort for sort in comments_id if sort > 0]
+                c = [list_item for list_item in ([item for item, count in collections.Counter(sorted_list).items()
+                                                  if count > activity_comments])]
                 likes_comments_list = c
 
             # Если выбраны лайки/репосты и комментарии
             elif check == 3:
-                likes_id = []
-                l = []
-                for x, y in self.export_id(self.take_posts()):
-                    likes_id.append(self.likes(x, y))
-                all_likes = []
-                for x in likes_id:
-                    for y in x:
-                        all_likes.append(y)
-                for list_item in ([item for item, count in collections.Counter(all_likes).items()
-                                   if count > activity_likes]):
-                    l.append(list_item)
+                likes_id = [self.likes(x, y) for x, y in self.export_id(self.take_posts())]
+                all_likes = [y for x in likes_id for y in x]
+                l = [list_item for list_item in ([item for item, count in collections.Counter(all_likes).items()
+                                                  if count > activity_likes])]
                 comments_id = []
-                comments_id_ = []
-                sorted_list = []
-                c = []
-                for a, b in self.export_id(self.take_posts()):
-                    comments_id_.append((self.comments(a, b)))
+                comments_id_ = [(self.comments(a, b)) for a, b in self.export_id(self.take_posts())]
                 for x in comments_id_:
                     for comment in x:
                         try:
                             comments_id.append(comment['from_id'])
                         except:
                             pass
-                for sort in comments_id:
-                    if sort > 0:
-                        sorted_list.append(sort)
-                    else:
-                        pass
-                for list_item in ([item for item, count in collections.Counter(sorted_list).items()
-                                   if count > activity_comments]):
-                    c.append(list_item)
-
+                sorted_list = [sort for sort in comments_id if sort > 0]
+                c = [list_item for list_item in ([item for item, count in collections.Counter(sorted_list).items()
+                                                  if count > activity_comments])]
                 likes_comments_list = list(set(l + c))
-
             else:
                 pass
 
@@ -336,13 +294,12 @@ class MainWindow(QtWidgets.QMainWindow):
             city_list = []
             VUZ_list_sort = []
             VUZ_list = []
-            test = []
             for user_id in likes_comments_list:
                 try:
                     response = requests.get('https://api.vk.com/method/users.get',
                                             params={
                                                 'lang': lang,
-                                                'access_token': token,
+                                                'access_token': self.user_token,
                                                 'v': v,
                                                 'user_ids': user_id,
                                                 'fields': fields
@@ -354,8 +311,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     pass
 
             self.users_allinfo_list = users_allinfo_list
-            for x in users_allinfo_list:
-                test.append(x)
+            test = [x for x in users_allinfo_list]
             print(len(test))
 
             # Создание заголовков колонок
@@ -456,7 +412,6 @@ class MainWindow(QtWidgets.QMainWindow):
     # Загрузка ID из файла
     def load_IDs(self):
         users_allinfo_list = []
-        likes_comments_list = []
         dta = []
         users = ''
         fields = 'id, sex, education, universities, city, country, bdate'
@@ -467,15 +422,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 users = f.read().splitlines()
         except:
             pass
-        for user in users:
-            likes_comments_list.append(user)
+        likes_comments_list = [user for user in users]
 
         for user_id in likes_comments_list:
             try:
                 response = requests.get('https://api.vk.com/method/users.get',
                                         params={
                                             'lang': lang,
-                                            'access_token': token,
+                                            'access_token': self.user_token,
                                             'v': v,
                                             'user_ids': user_id,
                                             'fields': fields
@@ -539,147 +493,147 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Применение фильтра
     def filter(self):
-            dta = []
-            filtered_users = []
-            filtered_users_info = []
-            fields = 'id, sex, education, universities, city, country, bdate'
-            lang = 'ru'
-            if self.ui.sexComboBox.currentText() == 'Мужской':
-                s = 2
-            else:
-                s = 1
-            for info in self.users_allinfo_list:
+        dta = []
+        filtered_users = []
+        filtered_users_info = []
+        fields = 'id, sex, education, universities, city, country, bdate'
+        lang = 'ru'
+        if self.ui.sexComboBox.currentText() == 'Мужской':
+            s = 2
+        else:
+            s = 1
+        for info in self.users_allinfo_list:
+            try:
+                id = info['id']
+                filtered_users.append(id)
+                if info['sex'] == 2:
+                    sex = 'Мужской'
+                else:
+                    sex = 'Женский'
                 try:
-                    id = info['id']
-                    filtered_users.append(id)
-                    if info['sex'] == 2:
-                        sex = 'Мужской'
-                    else:
-                        sex = 'Женский'
-                    try:
-                        a = info['bdate']
-                        a = a.split('.')
-                        aa = datetime.date(int(a[2]), int(a[1]), int(a[0]))
-                        bb = datetime.date.today()
-                        cc = (bb - aa) // 365
-                        date = str(cc).split()[0]
-                    except:
-                        date = 'скрыт'
-                    try:
-                        country = info['country']['title']
-                    except:
-                        country = 'скрыта'
-                    try:
-                        city = info['city']['title']
-                    except:
-                        city = 'скрыт'
-                    try:
-                        if info['university_name'] == '':
-                            VUZ = 'не указано'
-                        else:
-                            VUZ = info['university_name']
-                    except:
+                    a = info['bdate']
+                    a = a.split('.')
+                    aa = datetime.date(int(a[2]), int(a[1]), int(a[0]))
+                    bb = datetime.date.today()
+                    cc = (bb - aa) // 365
+                    date = str(cc).split()[0]
+                except:
+                    date = 'скрыт'
+                try:
+                    country = info['country']['title']
+                except:
+                    country = 'скрыта'
+                try:
+                    city = info['city']['title']
+                except:
+                    city = 'скрыт'
+                try:
+                    if info['university_name'] == '':
                         VUZ = 'не указано'
-
-                    if self.ui.ageFromEdit.text() != '':
-                        if self.ui.ageFromEdit.text() > date or date == 'скрыт':
-                            filtered_users.remove(id)
-
-                    if self.ui.ageToEdit.text() != '':
-                        if self.ui.ageToEdit.text() < date or date == 'скрыт':
-                            filtered_users.remove(id)
-
-                    if self.ui.sexComboBox.currentText() != 'Не менять':
-                        if info['sex'] != s:
-                            filtered_users.remove(id)
-
-                    if self.ui.countryComboBox.currentText() != 'Не менять':
-                        if country != self.ui.countryComboBox.currentText() or country == 'скрыта':
-                            filtered_users.remove(id)
-
-                    if self.ui.cityComboBox.currentText() != 'Не менять':
-                        if city != self.ui.cityComboBox.currentText() or city == 'скрыт':
-                            filtered_users.remove(id)
-
-                    if self.ui.educationComboBox.currentText() != 'Не менять':
-                        if VUZ != self.ui.educationComboBox.currentText() or VUZ == 'не указано':
-                            filtered_users.remove(id)
-                except:
-                    pass
-
-            print(filtered_users, len(filtered_users))
-
-            for user_id in filtered_users:
-                try:
-                    response = requests.get('https://api.vk.com/method/users.get',
-                                            params={
-                                                'lang': lang,
-                                                'access_token': token,
-                                                'v': v,
-                                                'user_ids': user_id,
-                                                'fields': fields
-                                            }
-                                            )
-                    data = response.json()['response']
-                    filtered_users_info.extend(data)
-                except:
-                    pass
-
-            self.ui.tableWidget.setRowCount(len(filtered_users_info))
-            self.ui.tableWidget.setHorizontalHeaderLabels(('Имя', 'Фамилия', 'Пол', 'Возраст', 'Страна', 'Город',
-                                                           'Место учебы'))
-
-            for info in filtered_users_info:
-                try:
-                    if info['sex'] == 2:
-                        sex = "Мужской"
                     else:
-                        sex = 'Женский'
-                    try:
-                        a = info['bdate']
-                        a = a.split('.')
-                        aa = datetime.date(int(a[2]), int(a[1]), int(a[0]))
-                        bb = datetime.date.today()
-                        cc = (bb - aa) // 365
-                        date = str(cc).split()[0]
-                    except:
-                        date = 'скрыт'
-                    try:
-                        country = info['country']['title']
-                    except:
-                        country = 'скрыта'
-                    try:
-                        city = info['city']['title']
-                    except:
-                        city = 'скрыт'
-                    try:
-                        if info['university_name'] == '':
-                            VUZ = 'не указано'
-                        else:
-                            VUZ = info['university_name']
-                    except:
-                        VUZ = 'не указано'
-                    dta.append((info['first_name'], info['last_name'], sex, date, country, city, VUZ))
+                        VUZ = info['university_name']
                 except:
-                    pass
+                    VUZ = 'не указано'
 
-            row = 0
-            for tup in dta:
-                col = 0
-                for item in tup:
-                    cellinfo = QTableWidgetItem(item)
-                    cellinfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    self.ui.tableWidget.setItem(row, col, cellinfo)
-                    col += 1
-                row += 1
-            self.ui.tableWidget.setSortingEnabled(True)
-            if row == 0:
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Information)
-                msg.setWindowTitle('Пользователи не найдены')
-                msg.setText('Пользователи не найдены. Попробуйте другие сообщества.')
-                msg.exec_()
-            self.likes_commenst_list = list(set(filtered_users))
+                if self.ui.ageFromEdit.text() != '':
+                    if self.ui.ageFromEdit.text() > date or date == 'скрыт':
+                        filtered_users.remove(id)
+
+                if self.ui.ageToEdit.text() != '':
+                    if self.ui.ageToEdit.text() < date or date == 'скрыт':
+                        filtered_users.remove(id)
+
+                if self.ui.sexComboBox.currentText() != 'Не менять':
+                    if info['sex'] != s:
+                        filtered_users.remove(id)
+
+                if self.ui.countryComboBox.currentText() != 'Не менять':
+                    if country != self.ui.countryComboBox.currentText() or country == 'скрыта':
+                        filtered_users.remove(id)
+
+                if self.ui.cityComboBox.currentText() != 'Не менять':
+                    if city != self.ui.cityComboBox.currentText() or city == 'скрыт':
+                        filtered_users.remove(id)
+
+                if self.ui.educationComboBox.currentText() != 'Не менять':
+                    if VUZ != self.ui.educationComboBox.currentText() or VUZ == 'не указано':
+                        filtered_users.remove(id)
+            except:
+                pass
+
+        print(filtered_users, len(filtered_users))
+
+        for user_id in filtered_users:
+            try:
+                response = requests.get('https://api.vk.com/method/users.get',
+                                        params={
+                                            'lang': lang,
+                                            'access_token': self.user_token,
+                                            'v': v,
+                                            'user_ids': user_id,
+                                            'fields': fields
+                                        }
+                                        )
+                data = response.json()['response']
+                filtered_users_info.extend(data)
+            except:
+                pass
+
+        self.ui.tableWidget.setRowCount(len(filtered_users_info))
+        self.ui.tableWidget.setHorizontalHeaderLabels(('Имя', 'Фамилия', 'Пол', 'Возраст', 'Страна', 'Город',
+                                                       'Место учебы'))
+
+        for info in filtered_users_info:
+            try:
+                if info['sex'] == 2:
+                    sex = "Мужской"
+                else:
+                    sex = 'Женский'
+                try:
+                    a = info['bdate']
+                    a = a.split('.')
+                    aa = datetime.date(int(a[2]), int(a[1]), int(a[0]))
+                    bb = datetime.date.today()
+                    cc = (bb - aa) // 365
+                    date = str(cc).split()[0]
+                except:
+                    date = 'скрыт'
+                try:
+                    country = info['country']['title']
+                except:
+                    country = 'скрыта'
+                try:
+                    city = info['city']['title']
+                except:
+                    city = 'скрыт'
+                try:
+                    if info['university_name'] == '':
+                        VUZ = 'не указано'
+                    else:
+                        VUZ = info['university_name']
+                except:
+                    VUZ = 'не указано'
+                dta.append((info['first_name'], info['last_name'], sex, date, country, city, VUZ))
+            except:
+                pass
+
+        row = 0
+        for tup in dta:
+            col = 0
+            for item in tup:
+                cellinfo = QTableWidgetItem(item)
+                cellinfo.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.tableWidget.setItem(row, col, cellinfo)
+                col += 1
+            row += 1
+        self.ui.tableWidget.setSortingEnabled(True)
+        if row == 0:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle('Пользователи не найдены')
+            msg.setText('Пользователи не найдены. Попробуйте другие сообщества.')
+            msg.exec_()
+        self.likes_commenst_list = list(set(filtered_users))
 
 
 app = QtWidgets.QApplication([])

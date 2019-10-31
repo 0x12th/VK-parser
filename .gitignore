@@ -1,3 +1,6 @@
 .idea
 designer.exe
 qlabel.pyShell
+test.py
+__pycache__
+forms/__pycache__/
