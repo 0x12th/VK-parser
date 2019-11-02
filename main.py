@@ -29,7 +29,7 @@ class AuthWindow(QWidget, Ui_Auth_form):
         vk = VKAuth(['1073737727'], '7021586', '5.95', email=self.login_line.text(), pswd=self.password_line.text())
         vk.auth()
         self.user_token = vk.get_token()
-        if vk.get_token() == None:
+        if vk.get_token() is None:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText('Невозможно авторизоваться:')
@@ -63,8 +63,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.ui.searchCommunityButton.clicked.connect(self.search_groups)
         self.ui.searchUsersButton.clicked.connect(self.activity)
-        self.ui.saveIDsButton.clicked.connect(self.save_IDs)
-        self.ui.loadIDsButton.clicked.connect(self.load_IDs)
+        self.ui.saveIDsButton.clicked.connect(self.save_ids)
+        self.ui.loadIDsButton.clicked.connect(self.load_ids)
         self.ui.filterButton.clicked.connect(self.filter)
         self.ui.copyBufferButton.clicked.connect(self.buffer)
         self.ui.action_2.triggered.connect(self.info)
@@ -292,8 +292,8 @@ class MainWindow(QtWidgets.QMainWindow):
             country_list = []
             city_list_sort = []
             city_list = []
-            VUZ_list_sort = []
-            VUZ_list = []
+            vuz_list_sort = []
+            vuz_list = []
             for user_id in likes_comments_list:
                 try:
                     response = requests.get('https://api.vk.com/method/users.get',
@@ -343,12 +343,12 @@ class MainWindow(QtWidgets.QMainWindow):
                         city = 'скрыт'
                     try:
                         if info['university_name'] == '':
-                            VUZ = 'не указано'
+                            vuz = 'не указано'
                         else:
-                            VUZ = info['university_name']
+                            vuz = info['university_name']
                     except:
-                        VUZ = 'не указано'
-                    dta.append((info['first_name'], info['last_name'], sex, date, country, city, VUZ))
+                        vuz = 'не указано'
+                    dta.append((info['first_name'], info['last_name'], sex, date, country, city, vuz))
 
                     if country == 'скрыта':
                         pass
@@ -362,18 +362,18 @@ class MainWindow(QtWidgets.QMainWindow):
                         city_list_sort.append(city)
                     city_list = list(set(city_list_sort))
 
-                    if VUZ == 'не указано':
+                    if vuz == 'не указано':
                         pass
                     else:
-                        VUZ_list_sort.append(VUZ)
-                    VUZ_list = list(set(VUZ_list_sort))
+                        vuz_list_sort.append(vuz)
+                    vuz_list = list(set(vuz_list_sort))
 
                 except:
                     pass
 
             self.ui.countryComboBox.addItems(country_list)
             self.ui.cityComboBox.addItems(city_list)
-            self.ui.educationComboBox.addItems(VUZ_list)
+            self.ui.educationComboBox.addItems(vuz_list)
 
             # Вывод данных в таблицу
             row = 0
@@ -398,7 +398,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.likes_commenst_list = likes_comments_list
 
     # Сохранение в файл ID полученной аудитории
-    def save_IDs(self):
+    def save_ids(self):
         filename = QFileDialog.getSaveFileName(self, '', os.getcwd(), "Text (*.txt)")[0]
         with open(filename, "w", encoding='utf8') as file:
             for x in self.likes_commenst_list:
@@ -410,7 +410,7 @@ class MainWindow(QtWidgets.QMainWindow):
         pyperclip.copy(string)
 
     # Загрузка ID из файла
-    def load_IDs(self):
+    def load_ids(self):
         users_allinfo_list = []
         dta = []
         users = ''
@@ -469,12 +469,12 @@ class MainWindow(QtWidgets.QMainWindow):
                     city = 'скрыт'
                 try:
                     if info['university_name'] == '':
-                        VUZ = 'не указано'
+                        vuz = 'не указано'
                     else:
-                        VUZ = info['university_name']
+                        vuz = info['university_name']
                 except:
-                    VUZ = 'не указано'
-                dta.append((info['first_name'], info['last_name'], sex, date, country, city, VUZ))
+                    vuz = 'не указано'
+                dta.append((info['first_name'], info['last_name'], sex, date, country, city, vuz))
             except:
                 pass
 
@@ -529,11 +529,11 @@ class MainWindow(QtWidgets.QMainWindow):
                     city = 'скрыт'
                 try:
                     if info['university_name'] == '':
-                        VUZ = 'не указано'
+                        vuz = 'не указано'
                     else:
-                        VUZ = info['university_name']
+                        vuz = info['university_name']
                 except:
-                    VUZ = 'не указано'
+                    vuz = 'не указано'
 
                 if self.ui.ageFromEdit.text() != '':
                     if self.ui.ageFromEdit.text() > date or date == 'скрыт':
@@ -556,7 +556,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         filtered_users.remove(id)
 
                 if self.ui.educationComboBox.currentText() != 'Не менять':
-                    if VUZ != self.ui.educationComboBox.currentText() or VUZ == 'не указано':
+                    if vuz != self.ui.educationComboBox.currentText() or vuz == 'не указано':
                         filtered_users.remove(id)
             except:
                 pass
@@ -608,12 +608,12 @@ class MainWindow(QtWidgets.QMainWindow):
                     city = 'скрыт'
                 try:
                     if info['university_name'] == '':
-                        VUZ = 'не указано'
+                        vuz = 'не указано'
                     else:
-                        VUZ = info['university_name']
+                        vuz = info['university_name']
                 except:
-                    VUZ = 'не указано'
-                dta.append((info['first_name'], info['last_name'], sex, date, country, city, VUZ))
+                    vuz = 'не указано'
+                dta.append((info['first_name'], info['last_name'], sex, date, country, city, vuz))
             except:
                 pass
 
